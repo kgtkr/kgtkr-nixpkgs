@@ -27,22 +27,22 @@ stdenv.mkDerivation rec {
     patchelf
   ];
   buildPhase = ''
-  cp -r $src/bin .
-  cp -r $src/lib .
+    cp -r $src/bin .
+    cp -r $src/lib .
   '' + {
     linux = ''
     '';
     macos = ''
-    for target in {lib,bin}/*; do
-      for lib in lib/*; do
-        install_name_tool -change /usr/local/lib/`basename $lib` $out/lib/`basename $lib` $target
+      for target in {lib,bin}/*; do
+        for lib in lib/*; do
+          install_name_tool -change /usr/local/lib/`basename $lib` $out/lib/`basename $lib` $target
+        done
       done
-    done
     '';
   }.${plat};
   installPhase = ''
-  mkdir -p $out
-  cp -r ./bin $out
-  cp -r ./lib $out
+    mkdir -p $out
+    cp -r ./bin $out
+    cp -r ./lib $out
   '';
 }
