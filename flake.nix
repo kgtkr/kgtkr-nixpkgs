@@ -8,8 +8,6 @@
     let
       packageNames = [
         "cloud-localds"
-        "sqldef"
-        # "watchman"
       ];
     in
     {
